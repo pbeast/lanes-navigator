@@ -18,8 +18,6 @@ export function definitionLocation(document: vscode.TextDocument, position: vsco
     let lane = wordRange ? document.getText(wordRange) : '';
 
     let allText = document.getText();
-//    let offset = allText.indexOf("lane :" + word + " ");
-    //let r = "lane\s+:"+lane+"\\s"
     let r = new RegExp("lane\\s+:"+lane+"\\s+do", "g")
     let offset = allText.search(r);
     if (offset === -1)
@@ -35,7 +33,6 @@ export function definitionLocation(document: vscode.TextDocument, position: vsco
             return definitionInformation;
         }
     }
-
 
     let lanePosition = document.positionAt(offset);
 
@@ -61,6 +58,36 @@ class LanesDefinitionProvider implements vscode.DefinitionProvider {
     }
 }
 
+export class FastlaneSymbolProvider implements vscode.DocumentSymbolProvider {
+    provideDocumentSymbols(document: vscode.TextDocument, token: vscode.CancellationToken): vscode.ProviderResult<vscode.SymbolInformation[] | vscode.DocumentSymbol[]> {
+
+        let allText = document.getText();
+        let r = new RegExp("lane\\s+:(\\w+)\\s+do", "g")
+        
+
+        let symbols = []
+
+        let match;
+        do {
+            match = r.exec(allText);
+            if (match) {
+                symbols.push(new vscode.SymbolInformation(match[1], vscode.SymbolKind.Method, "", new vscode.Location(document.uri, document.positionAt(r.lastIndex))));
+            }
+        } while (match);
+
+        r = new RegExp("def\\s+(\\w+)\\s*\\(", "g")
+
+        do {
+            match = r.exec(allText);
+            if (match) {
+                symbols.push(new vscode.SymbolInformation(match[1], vscode.SymbolKind.Function, "", new vscode.Location(document.uri, document.positionAt(r.lastIndex))));
+            }
+        } while (match);
+
+        return symbols;
+    }
+};
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -82,6 +109,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);
 
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(FASTLANE_MODE, new LanesDefinitionProvider()));
+    context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(FASTLANE_MODE, new FastlaneSymbolProvider()));
 }
 
 // this method is called when your extension is deactivated
