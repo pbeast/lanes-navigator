@@ -14,3 +14,7 @@ Have fun and happy coding
 ### 0.0.1
 
 Initial release
+
+### 0.1.0
+
+Minor fixes
