@@ -19,15 +19,21 @@ export function definitionLocation(document: vscode.TextDocument, position: vsco
 
     let allText = document.getText();
 //    let offset = allText.indexOf("lane :" + word + " ");
-    let offset = allText.search("/lane\s+:"+lane+"\s+do/g");
+    //let r = "lane\s+:"+lane+"\\s"
+    let r = new RegExp("lane\\s+:"+lane+"\\s+do", "g")
+    let offset = allText.search(r);
     if (offset === -1)
     {
-        let definitionInformation: LaneDefinitionInformation = {
-            file: "",
-            line: 0,
-            column: 0};
+        r = new RegExp("def\\s+"+lane+"\\s*\\(", "g")
+        offset = allText.search(r);
+        if (offset === -1){
+            let definitionInformation: LaneDefinitionInformation = {
+                file: "",
+                line: 0,
+                column: 0};
 
-        return definitionInformation;
+            return definitionInformation;
+        }
     }
 
 
