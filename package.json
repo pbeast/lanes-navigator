@@ -1,26 +1,25 @@
 {
     "name": "lanes-navigator",
     "displayName": "Lanes navigator",
-    "description": "Allows to navigate lanes defined in a Fastfile",
+    "description": "Allows to navigate lanes and functions defined in a Fastfile",
     "version": "0.0.1",
     "publisher": "PBeast",
     "engines": {
         "vscode": "^1.26.0"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.com/pbeast/lanes-navigator.git"
+    },
     "categories": [
         "Programming Languages"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello",
         "onLanguage:ruby"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "Hello World"
-            }
         ],
         "languages": [
             {

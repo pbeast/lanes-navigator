@@ -48,7 +48,7 @@ export function definitionLocation(document: vscode.TextDocument, position: vsco
 class LanesDefinitionProvider implements vscode.DefinitionProvider {
     public provideDefinition(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken):vscode.Location {
         var definitionInfo = definitionLocation(document, position, token);
-        if (definitionInfo === null || definitionInfo.file === null) { 
+        if (definitionInfo === null || definitionInfo.file === null || definitionInfo.file === "") { 
             return new vscode.Location(document.uri, position);
         }
 
@@ -91,23 +91,6 @@ export class FastlaneSymbolProvider implements vscode.DocumentSymbolProvider {
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "lanes-navigator" is now active!');
-
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
-        // The code you place here will be executed every time your command is executed
-
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
-    });
-
-    context.subscriptions.push(disposable);
-
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(FASTLANE_MODE, new LanesDefinitionProvider()));
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(FASTLANE_MODE, new FastlaneSymbolProvider()));
 }
