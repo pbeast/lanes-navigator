@@ -2,7 +2,7 @@
     "name": "lanes-navigator",
     "displayName": "Lanes navigator",
     "description": "Allows to navigate lanes and functions defined in a Fastfile",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "publisher": "PBeast",
     "author": {
         "name": "Pavel Yankelevich"
@@ -17,7 +17,8 @@
         "vscode": "^1.26.0"
     },
     "keywords": [
-        "Fastlane", "Fastfile"
+        "Fastlane",
+        "Fastfile"
     ],
     "repository": {
         "type": "git",
@@ -36,15 +37,20 @@
     "main": "./out/extension",
     "contributes": {
         "commands": [],
-        "languages": [{
-			"id": "ruby",
-			"aliases": ["Ruby", "ruby"],
-            "filenamePatterns": [
-                "Fastfile",
-                "Fastfile*",
-                "*Fastfile"
-            ]
-        }]
+        "languages": [
+            {
+                "id": "ruby",
+                "aliases": [
+                    "Ruby",
+                    "ruby"
+                ],
+                "filenamePatterns": [
+                    "Fastfile",
+                    "Fastfile*",
+                    "*Fastfile"
+                ]
+            }
+        ]
     },
     "capabilities": {
         "definitionProvider": "true"
