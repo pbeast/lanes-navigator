@@ -4,9 +4,21 @@
     "description": "Allows to navigate lanes and functions defined in a Fastfile",
     "version": "0.1.0",
     "publisher": "PBeast",
+    "author": {
+        "name": "Pavel Yankelevich"
+    },
+    "license": "SEE LICENSE IN LICENSE",
+    "bugs": {
+        "url": "https://gitlab.com/pbeast/lanes-navigator/issues",
+        "email": "pavel@yankel.me"
+    },
+    "homepage": "https://gitlab.com/pbeast/lanes-navigator/blob/master/README.md",
     "engines": {
         "vscode": "^1.26.0"
     },
+    "keywords": [
+        "Fastlane", "Fastfile"
+    ],
     "repository": {
         "type": "git",
         "url": "https://gitlab.com/pbeast/lanes-navigator.git"
@@ -15,22 +27,24 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onLanguage:ruby"
+        "onLanguage:ruby",
+        "workspaceContains:Fastfile",
+        "workspaceContains:fastlane/Fastfile",
+        "workspaceContains:Fastfile*",
+        "workspaceContains:*Fastfile"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [],
-        "languages": [
-            {
-                "id": "ruby",
-                "extensions": [
-                    ""
-                ],
-                "aliases": [
-                    "Fastfile"
-                ]
-            }
-        ]
+        "languages": [{
+			"id": "ruby",
+			"aliases": ["Ruby", "ruby"],
+            "filenamePatterns": [
+                "Fastfile",
+                "Fastfile*",
+                "*Fastfile"
+            ]
+        }]
     },
     "capabilities": {
         "definitionProvider": "true"
