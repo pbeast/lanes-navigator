@@ -25,7 +25,8 @@
         "url": "https://gitlab.com/pbeast/lanes-navigator.git"
     },
     "categories": [
-        "Programming Languages"
+        "Programming Languages",
+        "Snippets"
     ],
     "activationEvents": [
         "onLanguage:ruby",
@@ -49,6 +50,12 @@
                     "Fastfile*",
                     "*Fastfile"
                 ]
+            }
+        ],
+        "snippets": [
+            {
+                "language": "ruby",
+                "path": "./snippets/snippets.json"
             }
         ]
     },
