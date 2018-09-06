@@ -2,7 +2,7 @@
     "name": "lanes-navigator",
     "displayName": "Lanes navigator",
     "description": "Allows to navigate lanes and functions defined in a Fastfile",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "publisher": "PBeast",
     "author": {
         "name": "Pavel Yankelevich"
