@@ -1,0 +1,14 @@
+{
+	"lane": {
+		"prefix": "lane",
+		"body": "desc \"$1\"\nlane :${2:nameOfTheLane} do |options|\n\t$3\nend\n\n",
+		"description": "Inserts fastlane lane template",
+		"scope": "source.ruby"
+	},
+	"plane": {
+		"prefix": "plane",
+		"body": "desc \"$1\"\nprivate_lane :${2:nameOfTheLane} do |options|\n\t$3\nend\n\n",
+		"description": "Inserts fastlane private lane template",
+		"scope": "source.ruby"
+	}
+}
